@@ -1,0 +1,322 @@
+/* ===============================
+   GLOBAL
+================================ */
+.emr-wrapper {
+  padding: 28px;
+  background: #f3f6fb;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+/* ===============================
+   HEADER
+================================ */
+.emr-header {
+  background: linear-gradient(135deg, #0b2e57, #1f5fa3);
+  border-radius: 14px;
+  padding: 28px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+.profile {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.profile img {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  border: 3px solid #ffffff70;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.profile input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #ffffff70;
+  color: white;
+  font-size: 16px;
+  margin-bottom: 6px;
+  outline: none;
+}
+
+.profile input::placeholder {
+  color: #e0e7ff;
+}
+
+.sub {
+  display: flex;
+  gap: 12px;
+}
+
+.open-btn {
+  background: linear-gradient(135deg, #18b36b, #0f9f5c);
+  border: none;
+  padding: 12px 26px;
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ===============================
+   VISIT STRIP
+================================ */
+.visit-strip {
+  margin-top: 18px;
+  display: flex;
+  gap: 18px;
+}
+
+.visit-strip input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #dbe2ef;
+  background: #ffffff;
+}
+
+/* ===============================
+   TABS
+================================ */
+.tabs {
+  display: flex;
+  gap: 35px;
+  margin-top: 25px;
+  border-bottom: 2px solid #dce3f0;
+}
+
+.tabs button {
+  background: none;
+  border: none;
+  padding-bottom: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #666;
+}
+
+.tabs .active {
+  color: #1f5fa3;
+  border-bottom: 3px solid #1f5fa3;
+}
+
+/* ===============================
+   CARD
+================================ */
+.card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 28px;
+  margin-top: 22px;
+  box-shadow: 0 8px 22px rgba(20, 40, 80, 0.08);
+}
+
+.card h3 {
+  margin: 20px 0 10px;
+  color: #0b2e57;
+  font-size: 16px;
+}
+
+.card input,
+.card textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #d9e1ef;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.card textarea {
+  min-height: 90px;
+}
+
+/* ===============================
+   GRID
+================================ */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+/* ===============================
+   RED FLAGS
+================================ */
+.checks {
+  display: flex;
+  gap: 25px;
+  margin: 12px 0 20px;
+}
+
+.checks label {
+  display: flex;
+  gap: 8px;
+  font-weight: 500;
+}
+
+/* ===============================
+   AI LEVEL
+================================ */
+.ai-box {
+  background: #fff0f0;
+  border-left: 6px solid #e63946;
+  padding: 18px;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+
+.ai-box h3 {
+  color: #c1121f;
+  margin-bottom: 6px;
+}
+
+.ai-box strong {
+  font-size: 18px;
+  color: #a10d14;
+}
+
+/* ===============================
+   TRIAGE
+================================ */
+.triage {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.triage button {
+  border-radius: 6px;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  color: white;
+}
+
+.triage button:nth-child(1) {
+  background: #c0392b;
+}
+.triage button:nth-child(2) {
+  background: #e67e22;
+}
+.triage button:nth-child(3) {
+  background: #27ae60;
+}
+.triage button:nth-child(4) {
+  background: #16a085;
+}
+.triage button:nth-child(5) {
+  background: #2980b9;
+}
+
+.triage .active {
+  box-shadow: 0 0 0 3px #00000030 inset;
+}
+
+/* ===============================
+   FOOTER
+================================ */
+.footer-btns {
+  margin: 30px 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 18px;
+}
+
+.draft {
+  background: #e0e0e0;
+  padding: 12px 26px;
+  border-radius: 6px;
+  border: none;
+  font-weight: 600;
+}
+
+.complete {
+  background: linear-gradient(135deg, #ff8c00, #ff6a00);
+  padding: 12px 30px;
+  border-radius: 6px;
+  border: none;
+  color: white;
+  font-weight: 600;
+}
+
+
+
+
+
+/* ===== PATIENT HEADER ===== */
+.patient-header {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* ===== MED GRID ===== */
+.med-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+/* ===== ALERT ===== */
+.cds-alert {
+  background: #fff3cd;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+/* ===== ACTIONS ===== */
+.med-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* ===== TABLE ===== */
+.med-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.med-table th,
+.med-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+/* BODY SCROLL */
+.emr-body {
+  margin-top: 20px;
+  max-height: calc(100vh - 220px);
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+/* STICKY HEADER */
+.emr-header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+/* FIX DOSAGE + PRIORITY ALIGNMENT */
+.med-grid select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #d9e1ef;
+  font-size: 14px;
+  background: #fff;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}

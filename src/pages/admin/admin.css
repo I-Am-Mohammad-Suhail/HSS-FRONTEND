@@ -1,0 +1,47 @@
+/* ===== LAYOUT ===== */
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5f7fb;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  width: 240px;
+  height: 100vh;
+  background: linear-gradient(180deg, #1e5bd8, #1746ad);
+  color: white;
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding-top: 20px;
+}
+
+/* ===== CONTENT AREA ===== */
+.admin-content {
+  margin-left: 240px; /* IMPORTANT */
+  padding: 24px;
+  width: calc(100% - 240px);
+}
+
+/* ===== MENU ===== */
+.menu {
+  list-style: none;
+  padding: 0;
+  margin-top: 30px;
+}
+
+.menu li {
+  padding: 12px 20px;
+}
+
+.menu li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  font-size: 15px;
+}
+
+.menu li:hover {
+  background: rgba(255, 255, 255, 0.15);
+}

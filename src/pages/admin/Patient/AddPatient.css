@@ -1,0 +1,236 @@
+/* ===============================
+   PAGE
+================================ */
+
+.patient-page {
+  padding: 32px 44px;
+  background: #f4f7fc;
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+}
+
+/* ===============================
+   HEADER
+================================ */
+
+.patient-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 34px;
+}
+
+.patient-header h2 {
+  font-size: 26px;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0;
+}
+
+.patient-header p {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #64748b;
+}
+
+/* ===============================
+   PHOTO
+================================ */
+
+.photo-box {
+  width: 120px;
+  height: 150px;
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px dashed #cbd5e1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+}
+
+.photo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-box input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+/* ===============================
+   CARD
+================================ */
+
+.patient-card {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 44px 48px;
+  box-shadow: 0 25px 60px rgba(15,23,42,0.08);
+}
+
+/* ===============================
+   SECTIONS
+================================ */
+
+.patient-card section {
+  margin-bottom: 52px;
+}
+
+.patient-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 28px;
+  padding-left: 12px;
+  border-left: 4px solid #2563eb;
+}
+
+/* ===============================
+   GRID (FINAL FIX)
+================================ */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: 28px;
+  row-gap: 34px;
+  align-items: flex-start;
+}
+
+.grid > div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 72px;
+}
+
+/* ===============================
+   DISPLAY NAME WIDTH
+================================ */
+
+.span-2 {
+  grid-column: span 3;
+}
+
+/* ===============================
+   LABELS
+================================ */
+
+.grid label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #475569;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+/* ===============================
+   INPUTS
+================================ */
+
+.grid input,
+.grid select {
+  height: 48px;
+  border-radius: 10px;
+  border: 1px solid #dbe2ea;
+  padding: 0 14px;
+  font-size: 14px;
+  background: #ffffff;
+  color: #0f172a;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.grid input::placeholder {
+  color: #94a3b8;
+}
+
+.grid input:focus,
+.grid select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+}
+
+.grid input[readonly] {
+  background: #f8fafc;
+}
+
+/* ===============================
+   SCAN BUTTON
+================================ */
+
+.scan-btn {
+  height: 48px;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  background: #2563eb;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.scan-btn:hover {
+  background: #1d4ed8;
+}
+
+/* ===============================
+   ACTION BUTTON
+================================ */
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 48px;
+}
+
+.actions .submit {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff;
+  border: none;
+  padding: 14px 44px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 14px 34px rgba(37,99,235,0.45);
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 1400px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .patient-page {
+    padding: 24px;
+  }
+
+  .patient-card {
+    padding: 28px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    row-gap: 26px;
+  }
+}
