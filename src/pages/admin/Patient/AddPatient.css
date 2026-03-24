@@ -3,16 +3,31 @@
   background: #f4f6f9;
 }
 
+/* FIX WIDTH */
+.card {
+  max-width: 1100px;
+  margin: auto;
+  background: #fff;
+  padding: 24px;
+  border-radius: 12px;
+}
+
+/* HEADER FIX */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 1100px;
+  margin: auto;
+  margin-bottom: 20px;
 }
 
+/* PHOTO */
 .photo-box {
-  width: 110px;
-  height: 110px;
-  border: 2px dashed #bbb;
+  width: 90px;
+  height: 90px;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,115 +41,109 @@
   opacity: 0;
 }
 
-.card {
-  background: #fff;
-  padding: 25px;
-  margin-top: 20px;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-}
+/* GRID SYSTEM */
+.grid-1 { display: grid; gap: 14px; }
+.grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
 
-h3 {
-  margin: 20px 0 10px;
-  color: #333;
-}
-
-/* GRID */
-.grid-1, .grid-2, .grid-3, .grid-4 {
-  display: grid;
-  gap: 12px;
-  margin-bottom: 15px;
-}
-
-.grid-1 { grid-template-columns: 1fr; }
-.grid-2 { grid-template-columns: repeat(2,1fr); }
-.grid-3 { grid-template-columns: repeat(3,1fr); }
-.grid-4 { grid-template-columns: repeat(4,1fr); }
-
-.span-2 { grid-column: span 2; }
-
-/* INPUT */
-input, select {
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #dcdcdc;
-  font-size: 14px;
-  transition: 0.2s;
-}
-
-input:focus, select:focus {
-  border-color: #1976d2;
-  outline: none;
-}
-
-/* BUTTON */
-button {
-  background: #1976d2;
-  color: white;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #125ea9;
-}
-
-.submit {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-}
-
-/* VIP */
-.vip {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-/* POPUP */
-.popup {
-  position: fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background: rgba(0,0,0,0.4);
-}
-
-.popup-box {
-  width: 320px;
-  margin: 120px auto;
-  background: #fff;
-  padding: 20px;
-  text-align: center;
-  border-radius: 10px;
-}
-/* GRID FIX FOR YOUR FORM */
-.grid-1, .grid-2, .grid-3, .grid-4 {
-  display: grid;
-  gap: 14px;
-  margin-bottom: 16px;
-}
-
-.grid-1 { grid-template-columns: 1fr; }
-.grid-2 { grid-template-columns: repeat(2, 1fr); }
-.grid-3 { grid-template-columns: repeat(3, 1fr); }
-
-/* 🔥 IMPORTANT LINE */
-.grid-4 { grid-template-columns: repeat(4, 1fr); }
-
-/* ALIGN FIX */
 .align-center {
   align-items: center;
 }
 
-/* VIP RIGHT ALIGN */
+/* INPUT FIX */
+input, select {
+  height: 42px;
+  padding: 0 12px;
+  border-radius: 6px;
+  border: 1px solid #dcdcdc;
+  font-size: 14px;
+}
+
+/* BUTTON FIX */
+.scan-btn {
+  height: 42px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #1976d2, #0d47a1);
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* VIP FIX */
 .vip {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
-  gap: 6px;
-  font-weight: 500;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+/* SUBMIT */
+.submit {
+  margin-top: 20px;
+  height: 45px;
+  font-weight: 600;
+}
+
+/* SECTION SPACING */
+h3 {
+  margin: 25px 0 12px;
+  font-size: 16px;
+}
+/* RELIGION FIX */
+.religion {
+  width: 100%;
+}
+
+/* VIP SWITCH */
+.vip-switch {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* SWITCH STYLE */
+.switch {
+  position: relative;
+  width: 42px;
+  height: 22px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 34px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.3s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 3px;
+  background: white;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.switch input:checked + .slider {
+  background-color: #1976d2;
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(20px);
 }
