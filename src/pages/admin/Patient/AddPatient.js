@@ -366,9 +366,9 @@ import { useState, useEffect } from "react";
 import "./AddPatient.css";
 
 const countryCityMap = {
-  India: ["Delhi", "Mumbai", "Pune"],
-  UAE: ["Dubai", "Abu Dhabi", "Sharjah"],
-  USA: ["New York", "Chicago"],
+  India: ["Delhi", "Mumbai", "Pune","Banglore","Hydrabad","Indore"],
+  UAE: ["Dubai", "Abu Dhabi", "Sharjah","Jeddah","Saudi Arebia"],
+  USA: ["New York", "Chicago","London"],
 };
 
 const countryCodes = {
@@ -377,7 +377,7 @@ const countryCodes = {
   USA: "+1",
 };
 
-const idTypes = ["Aadhaar", "PAN", "Passport"];
+const idTypes = ["Aadhaar CARD", "PAN CARD", "Passport","VOTER ID","DRIVING LICENSE"];
 
 let mrnCounter = 1;
 
@@ -394,12 +394,65 @@ export default function AddPatient() {
   const [secondaryId, setSecondaryId] = useState({ number: "", expiry: "" });
 
   // AGE
+  // useEffect(() => {
+  //   if (!dob) return;
+  //   const birth = new Date(dob);
+  //   const today = new Date();
+  //   setAge(today.getFullYear() - birth.getFullYear());
+  // }, [dob]);
   useEffect(() => {
-    if (!dob) return;
-    const birth = new Date(dob);
-    const today = new Date();
-    setAge(today.getFullYear() - birth.getFullYear());
-  }, [dob]);
+  if (!dob) return;
+
+  const birth = new Date(dob);
+  const today = new Date();
+
+  let years = today.getFullYear() - birth.getFullYear();
+  let months = today.getMonth() - birth.getMonth();
+  let days = today.getDate() - birth.getDate();
+
+  // adjust days
+  if (days < 0) {
+    months--;
+    const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+    days += prevMonth.getDate();
+  }
+
+  // adjust months
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+
+  const formattedAge = `${years}Y${String(months).padStart(2, "0")}M${String(days).padStart(2, "0")}D`;
+
+  setAge(formattedAge);
+}, [dob]);useEffect(() => {
+  if (!dob) return;
+
+  const birth = new Date(dob);
+  const today = new Date();
+
+  let years = today.getFullYear() - birth.getFullYear();
+  let months = today.getMonth() - birth.getMonth();
+  let days = today.getDate() - birth.getDate();
+
+  // adjust days
+  if (days < 0) {
+    months--;
+    const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+    days += prevMonth.getDate();
+  }
+
+  // adjust months
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+
+  const formattedAge = `${years}Y${String(months).padStart(2, "0")}M${String(days).padStart(2, "0")}D`;
+
+  setAge(formattedAge);
+}, [dob]);
 
   // COUNTRY CHANGE
   const handleCountry = (value) => {
@@ -457,8 +510,8 @@ export default function AddPatient() {
           <select><option>Single</option></select>
         </div>
 
-        {/* CONTACT */}
-        <h3>Contact</h3>
+        {/*CONTACT8*/}
+        {/* <h3>Contact</h3>
 
         <div className="grid-1">
           <input placeholder="Address" />
@@ -479,20 +532,86 @@ export default function AddPatient() {
         <div className="grid-2">
           <input value={code} placeholder="Code" readOnly />
           <input placeholder="Mobile" />
-        </div>
+        </div> */}
 
-        <div className="grid-3">
+        {/* <div className="grid-3">
           <input placeholder="Nationality" />
           <input placeholder="Religion" />
           <label className="vip"><input type="checkbox" /> VIP</label>
-        </div>
+        </div> */}
+        {/* <div className="grid-3">
+  <input placeholder="Nationality" />
+
+  <select name="religion" className="select">
+    <option value="">Select Religion</option>
+    <option>Hindu</option>
+    <option>Muslim</option>
+    <option>Christian</option>
+    <option>Sikh</option>
+    <option>Buddhist</option>
+    <option>Jain</option>
+    <option>Parsi</option>
+    <option>Jewish</option>
+    <option>Other</option>
+  </select>
+
+  <label className="vip">
+    <input type="checkbox" /> VIP
+  </label>
+</div> */}
+{/* CONTACT */}
+<h3>Contact</h3>
+
+{/* Address full */}
+<div className="grid-1">
+  <input placeholder="Address" />
+</div>
+
+{/* Country + City + Code + Mobile (ONE LINE) */}
+<div className="grid-4">
+  <select onChange={(e)=>handleCountry(e.target.value)}>
+    <option>Select Country</option>
+    {Object.keys(countryCityMap).map(c=> <option key={c}>{c}</option>)}
+  </select>
+
+  <select>
+    <option>Select City</option>
+    {cities.map(c=> <option key={c}>{c}</option>)}
+  </select>
+
+  <input value={code} placeholder="Code" readOnly />
+
+  <input placeholder="Mobile" />
+</div>
+
+{/* Nationality + Religion + VIP (ONE LINE) */}
+<div className="grid-3 align-center">
+  <input placeholder="Nationality" />
+
+  <select name="religion">
+    <option value="">Select Religion</option>
+    <option>Hindu</option>
+    <option>Muslim</option>
+    <option>Christian</option>
+    <option>Sikh</option>
+    <option>Buddhist</option>
+    <option>Jain</option>
+    <option>Parsi</option>
+    <option>Jewish</option>
+    <option>Other</option>
+  </select>
+
+  <label className="vip">
+    <input type="checkbox" /> VIP
+  </label>
+</div>
 
         {/* IDENTIFICATION */}
         <h3>Identification</h3>
 
         <div className="grid-4">
           <select>{idTypes.map(i=><option key={i}>{i}</option>)}</select>
-          <input placeholder="ID Number" />
+          <input placeholder=" ID Number" />
           <button>Scan</button>
           <input
             type="date"
@@ -513,10 +632,30 @@ export default function AddPatient() {
         {/* EMERGENCY */}
         <h3>Emergency</h3>
 
-        <div className="grid-2">
+        {/* <div className="grid-2">
           <input placeholder="Full Name" />
           <input placeholder="Relationship" />
-        </div>
+        </div> */}
+        <div className="grid-2">
+  <input placeholder="Full Name" />
+
+  <select name="relationship">
+    <option value="">Select Relationship</option>
+    <option>Father</option>
+    <option>Mother</option>
+    <option>Spouse</option>
+    <option>Husband</option>
+    <option>Wife</option>
+    <option>Brother</option>
+    <option>Sister</option>
+    <option>Son</option>
+    <option>Daughter</option>
+    <option>Guardian</option>
+    <option>Friend</option>
+    <option>Relative</option>
+    <option>Other</option>
+  </select>
+</div>
 
         <div className="grid-4">
           <select>{idTypes.map(i=><option key={i}>{i}</option>)}</select>

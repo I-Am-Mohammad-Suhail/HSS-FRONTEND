@@ -111,3 +111,30 @@ button:hover {
   text-align: center;
   border-radius: 10px;
 }
+/* GRID FIX FOR YOUR FORM */
+.grid-1, .grid-2, .grid-3, .grid-4 {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.grid-1 { grid-template-columns: 1fr; }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+/* 🔥 IMPORTANT LINE */
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+/* ALIGN FIX */
+.align-center {
+  align-items: center;
+}
+
+/* VIP RIGHT ALIGN */
+.vip {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
