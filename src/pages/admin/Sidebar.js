@@ -1,74 +1,20 @@
-// import { Link } from "react-router-dom";
-
-// const Sidebar = () => {
-//   return (
-//     <div className="sidebar">
-//       <h3>ADMIN</h3>
-
-//       <ul>
-//         <li>
-//           <Link to="/admin/dashboard">DASHBOARD</Link>
-//         </li>
-
-//         <li>
-//           <Link to="/admin/patients/register">
-//             PATIENT REGISTRATION
-//           </Link>
-//         </li>
-
-//         <li>
-//           <Link to="/admin/patients/visit">
-//             PATIENT VISIT
-//           </Link>
-//         </li>
-
-//         <li>
-//           <Link to="/admin/emr">EMR</Link>
-//         </li>
-
-//         <li>
-//           <Link to="/admin/billing">BILLING</Link>
-//         </li>
-//       </ul>
-//     </div>
-//   );
-// };
-
-// export default Sidebar;
 import { Link } from "react-router-dom";
+import "./admin.css";
 
 const Sidebar = () => {
   return (
     <div className="sidebar">
-      <h3>ADMIN</h3>
+      <h3 className="logo">ADMIN</h3>
 
-      <ul>
-        <li>
-          <Link to="/admin">DASHBOARD</Link>
-        </li>
-
-        <li>
-          <Link to="/admin/patients/register">
-            PATIENT REGISTRATION
-          </Link>
-        </li>
-
-        <li>
-            <Link to="/admin/patients/visit">PATIENT VISIT</Link>
-
-        </li>
-
-        <li>
-          <Link to="/admin/emr">EMR</Link>
-        </li>
-
-        <li>
-          <Link to="/admin/billing">BILLING</Link>
-        </li>
+      <ul className="menu">
+        <li><Link to="/admin">Dashboard</Link></li>
+        <li><Link to="/admin/patients/register">Patient Registration</Link></li>
+        <li><Link to="/admin/patients/visit">Patient Visit</Link></li>
+        <li><Link to="/admin/emr">EMR</Link></li>
+        <li><Link to="/admin/billing">Billing</Link></li>
       </ul>
     </div>
   );
 };
 
 export default Sidebar;
-
