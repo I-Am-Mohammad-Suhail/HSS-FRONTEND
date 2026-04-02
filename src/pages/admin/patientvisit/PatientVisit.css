@@ -1,0 +1,899 @@
+/* =============================================================================
+   PatientVisit.css
+   Fully responsive — Desktop (1024px+), Tablet (768px), Mobile (480px, 360px)
+   ============================================================================= */
+
+/* ── CSS Variables ─────────────────────────────────────────────────────────── */
+:root {
+  --primary-dark: #1a3a5c;
+  --primary: #1e5799;
+  --primary-light: #3b82f6;
+  --primary-pale: #eff6ff;
+  --primary-soft: #dbeafe;
+
+  --text-dark: #1e293b;
+  --text-mid: #374151;
+  --text-muted: #64748b;
+  --text-faint: #94a3b8;
+
+  --border: #e2e8f0;
+  --border-light: #f1f5f9;
+  --bg-page: #f0f4f8;
+  --bg-card: #ffffff;
+  --bg-input: #f8fafc;
+
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 16px;
+
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.07);
+  --shadow-header: 0 4px 20px rgba(30, 87, 153, 0.35);
+  --shadow-btn: 0 4px 16px rgba(30, 87, 153, 0.4);
+  --shadow-modal: 0 24px 60px rgba(0, 0, 0, 0.2);
+  --shadow-dropdown: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+  --transition: 0.2s ease;
+}
+
+/* ── Reset ─────────────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg-page);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  color: var(--text-dark);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Page Wrapper ──────────────────────────────────────────────────────────── */
+.visit-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 24px 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── Header ────────────────────────────────────────────────────────────────── */
+.visit-header {
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  border-radius: 14px;
+  padding: 22px;
+  color: #fff;
+
+  /* 🔥 NEW ADD */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  flex-wrap: wrap;
+  /* 🔥 ADD THIS */
+  gap: 10px;
+  /* 🔥 ADD THIS */
+}
+
+.patient-box {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex: 1;
+  min-width: 0;
+}
+
+.avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px dashed rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: background var(--transition);
+}
+
+.avatar:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.patient-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  flex: 1;
+}
+
+.patient-name {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  background: transparent;
+}
+
+.patient-name::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.meta {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.meta span {
+  white-space: nowrap;
+}
+
+.pt-id {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Card ──────────────────────────────────────────────────────────────────── */
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  box-shadow: var(--shadow-card);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  transition: 0.2s;
+}
+
+.card h3 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary-dark);
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--border-light);
+}
+
+/* ── Form Elements ─────────────────────────────────────────────────────────── */
+label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 6px;
+}
+
+.visit-page input,
+.visit-page select,
+.visit-page textarea {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  color: var(--text-dark);
+  background: var(--bg-input);
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+  font-family: inherit;
+}
+
+.visit-page input:focus,
+.visit-page select:focus,
+.visit-page textarea:focus {
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+  background: #fff;
+}
+
+select {
+  cursor: pointer;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* ── Visit Grid ────────────────────────────────────────────────────────────── */
+.visit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px 24px;
+}
+
+.visit-grid>div {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Doctor Search ─────────────────────────────────────────────────────────── */
+.doctor-search {
+  position: relative;
+}
+
+.ds-input-wrap {
+  position: relative;
+}
+
+.ds-input {
+  padding-right: 36px !important;
+}
+
+.ds-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: var(--text-faint);
+  pointer-events: none;
+  line-height: 1;
+}
+
+.ds-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-dropdown);
+  list-style: none;
+  z-index: 200;
+  overflow: hidden;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.ds-dropdown::-webkit-scrollbar {
+  width: 4px;
+}
+
+.ds-dropdown::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+
+.ds-dropdown::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+.ds-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 14px;
+  font-size: 14px;
+  color: var(--text-dark);
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.ds-item:hover,
+.ds-item.active {
+  background: var(--primary-pale);
+}
+
+.ds-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--primary-soft);
+  color: #1d4ed8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.ds-no-result {
+  padding: 10px 14px;
+  font-size: 13px;
+  color: var(--text-faint);
+}
+
+/* ── Billing Section ───────────────────────────────────────────────────────── */
+.billing-left {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 24px;
+}
+
+.billing-left>div {
+  display: flex;
+  flex-direction: column;
+}
+
+.full {
+  grid-column: 1 / -1;
+}
+
+/* ── Benefits Trigger ──────────────────────────────────────────────────────── */
+.benefits-trigger-wrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 2px;
+}
+
+.benefits-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  border: 2px dashed var(--primary-light);
+  background: var(--primary-pale);
+  color: #1d4ed8;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+  font-family: inherit;
+}
+
+.benefits-btn:hover {
+  background: var(--primary-soft);
+  border-style: solid;
+  transform: translateY(-1px);
+}
+
+.benefits-badge {
+  background: var(--primary-light);
+  color: #fff;
+  border-radius: 20px;
+  padding: 2px 9px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.benefits-hint {
+  font-size: 13px;
+  color: var(--text-faint);
+}
+
+/* ── Modal Overlay ─────────────────────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-box {
+  background: var(--bg-card);
+  border-radius: 18px;
+  width: 100%;
+  max-width: 560px;
+  box-shadow: var(--shadow-modal);
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  animation: modalIn 0.22s ease;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 16px;
+  border-bottom: 2px solid var(--border-light);
+  flex-shrink: 0;
+}
+
+.modal-header h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--primary-dark);
+  border: none;
+  margin: 0;
+  padding: 0;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.modal-close {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: var(--border-light);
+  color: var(--text-muted);
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+  flex-shrink: 0;
+}
+
+.modal-close:hover {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+/* ── Modal Body ────────────────────────────────────────────────────────────── */
+.modal-body {
+  padding: 16px 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.modal-body::-webkit-scrollbar {
+  width: 4px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+.benefit-head {
+  display: grid;
+  grid-template-columns: 1fr 120px 140px;
+  gap: 10px;
+  padding: 6px 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.benefit-row {
+  display: grid;
+  grid-template-columns: 1fr 120px 140px;
+  gap: 10px;
+  padding: 9px 4px;
+  align-items: center;
+  border-bottom: 1px solid var(--border-light);
+  border-radius: 6px;
+  transition: background var(--transition);
+}
+
+.benefit-row:hover {
+  background: var(--bg-input);
+}
+
+.benefit-row:last-child {
+  border-bottom: none;
+}
+
+.svc-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-mid);
+}
+
+.input-with-unit {
+  display: flex;
+  align-items: stretch;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--bg-input);
+  transition: border-color var(--transition);
+}
+
+.input-with-unit:focus-within {
+  border-color: var(--primary-light);
+  background: #fff;
+}
+
+.input-with-unit .unit-label {
+  padding: 0 8px;
+  font-size: 13px;
+  color: var(--text-faint);
+  background: var(--border-light);
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.input-with-unit input {
+  border: none;
+  background: transparent;
+  padding: 8px;
+  font-size: 14px;
+  width: 100%;
+  outline: none;
+  box-shadow: none;
+}
+
+/* ── Modal Footer ──────────────────────────────────────────────────────────── */
+.modal-footer {
+  padding: 14px 24px 20px;
+  border-top: 2px solid var(--border-light);
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.btn-cancel {
+  padding: 10px 22px;
+  border-radius: 9px;
+  border: 1.5px solid var(--border);
+  background: #fff;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+  font-family: inherit;
+}
+
+.btn-cancel:hover {
+  background: var(--bg-input);
+  border-color: #cbd5e1;
+}
+
+.btn-save-benefits {
+  padding: 10px 22px;
+  border-radius: 9px;
+  border: none;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(59, 130, 246, 0.4);
+  transition: all var(--transition);
+  font-family: inherit;
+}
+
+.btn-save-benefits:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 16px rgba(59, 130, 246, 0.5);
+}
+
+/* ── Actions Bar ───────────────────────────────────────────────────────────── */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 4px;
+}
+
+.save-btn {
+  padding: 13px 40px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow-btn);
+  letter-spacing: 0.3px;
+  transition: all var(--transition);
+  font-family: inherit;
+}
+
+.save-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(30, 87, 153, 0.5);
+}
+
+.save-btn:active {
+  transform: scale(0.98);
+}
+
+.visit-page>input {
+  width: 100%;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  padding: 0 10px;
+}
+
+.blood-group-dropdown {
+  min-width: 30px;
+  max-width: 60px;
+  padding: 2px 6px;
+  font-size: 13px;
+  margin: 0 6px;
+
+  background: transparent;
+  border: none;
+  color: #fff;
+
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.blood-group-dropdown option {
+  color: #000;
+  /* dropdown list black rahe */
+}
+
+
+.blood-group-dropdown.selected {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border: none;
+}
+
+/* =============================================================================
+   RESPONSIVE — Tablet  (≤ 1024px)
+   ============================================================================= */
+@media (max-width: 1024px) {
+  .visit-page {
+    padding: 20px 18px 48px;
+  }
+
+  .visit-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px 20px;
+  }
+}
+
+/* =============================================================================
+   RESPONSIVE — Small Tablet / Large Phone  (≤ 768px)
+   ============================================================================= */
+@media (max-width: 768px) {
+  .visit-page {
+    padding: 16px 14px 40px;
+    gap: 16px;
+  }
+
+  /* Header */
+  .visit-header {
+    padding: 18px 20px;
+  }
+
+  .patient-name {
+    font-size: 19px;
+    max-width: 220px;
+  }
+
+  .avatar {
+    width: 62px;
+    height: 62px;
+  }
+
+  /* Cards */
+  .card {
+    padding: 18px 20px;
+  }
+
+  /* Grids */
+  .visit-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 16px;
+  }
+
+  .billing-left {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 16px;
+  }
+
+  /* Modal */
+  .modal-box {
+    max-width: 100%;
+  }
+
+  .benefit-head,
+  .benefit-row {
+    grid-template-columns: 1fr 100px 120px;
+    gap: 8px;
+  }
+}
+
+/* =============================================================================
+   RESPONSIVE — Mobile  (≤ 540px)
+   ============================================================================= */
+@media (max-width: 540px) {
+  .visit-page {
+    padding: 12px 12px 36px;
+    gap: 14px;
+  }
+
+  /* Header stacks vertically */
+  .visit-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 14px 18px;
+    gap: 12px;
+  }
+
+  .pt-id {
+    align-self: flex-start;
+  }
+
+  .patient-name {
+    font-size: 17px;
+    max-width: 100%;
+  }
+
+  /* All grids go single column */
+  .visit-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .billing-left {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  /* Cards */
+  .card {
+    padding: 16px 16px;
+  }
+
+  /* Benefits button */
+  .benefits-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Actions */
+  .actions {
+    justify-content: stretch;
+  }
+
+  .save-btn {
+    width: 100%;
+    text-align: center;
+    padding: 14px;
+  }
+
+  /* Modal */
+  .modal-overlay {
+    padding: 12px;
+    align-items: flex-end;
+  }
+
+  .modal-box {
+    border-radius: 18px 18px 0 0;
+    max-height: 92vh;
+  }
+
+  /* Benefits modal columns — collapse % and amount stack */
+  .benefit-head {
+    display: none;
+  }
+
+  .benefit-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 10px 4px;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    margin-bottom: 8px;
+    background: var(--bg-input);
+  }
+
+  .benefit-row:hover {
+    background: var(--primary-pale);
+  }
+
+  .svc-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--primary-dark);
+    padding-bottom: 2px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .modal-footer {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .btn-cancel,
+  .btn-save-benefits {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* =============================================================================
+   RESPONSIVE — Small Mobile  (≤ 360px)
+   ============================================================================= */
+@media (max-width: 360px) {
+  .visit-page {
+    padding: 10px 10px 28px;
+  }
+
+  .card {
+    padding: 14px 12px;
+  }
+
+  .card h3 {
+    font-size: 11px;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  .patient-name {
+    font-size: 15px;
+  }
+
+  .avatar {
+    width: 52px;
+    height: 52px;
+    font-size: 10px;
+  }
+
+  .save-btn {
+    font-size: 14px;
+  }
+}
