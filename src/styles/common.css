@@ -1,0 +1,40 @@
+/* ===== COMMON UI ===== */
+
+/* CARD */
+.card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,.05);
+}
+
+/* GRID */
+.grid-1 { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+
+/* INPUT */
+input,
+select,
+textarea {
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  font-size: 14px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  background: #fff;
+}
+
+/* BUTTON */
+button {
+  cursor: pointer;
+}

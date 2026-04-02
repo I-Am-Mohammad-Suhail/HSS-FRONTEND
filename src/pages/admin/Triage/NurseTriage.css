@@ -1,0 +1,119 @@
+.triage-page {
+  padding: 20px;
+}
+
+.triage-header {
+  background: #1e3a8a;
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.triage-card {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 10px;
+}
+
+.triage-page input {
+  height: 40px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.pain-scale span {
+  margin: 5px;
+  padding: 10px;
+  background: #eee;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.pain-scale .active {
+  background: red;
+  color: white;
+}
+
+.flags {
+  display: flex;
+  gap: 10px;
+}
+
+.flag {
+  padding: 10px;
+  border: none;
+  background: #ddd;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.flag.active {
+  background: #1d4ed8;
+  color: white;
+}
+
+.triage-buttons button {
+  margin: 5px;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  background: #ddd;
+  cursor: pointer;
+}
+
+.triage-buttons .active {
+  background: orange;
+  color: white;
+}
+
+.ai-box {
+  background: #fef3c7;
+}
+
+.ai-result {
+  font-size: 18px;
+  font-weight: bold;
+  color: red;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.draft {
+  background: gray;
+  color: white;
+  padding: 10px 20px;
+}
+
+.complete {
+  background: orange;
+  color: white;
+  padding: 10px 20px;
+}
+@media (max-width: 1024px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .actions {
+    flex-direction: column;
+  }
+
+  .triage-buttons button {
+    width: 100%;
+  }
+}
