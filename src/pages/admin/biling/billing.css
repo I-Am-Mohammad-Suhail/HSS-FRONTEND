@@ -11,7 +11,7 @@
   margin-bottom: 20px;
 }
 
-.card {
+.billing-card {
   background: #fff;
   padding: 22px;
   border-radius: 12px;
@@ -111,3 +111,24 @@
 .gray { background:#e5e7eb; }
 .green { background:#22c55e;color:#fff; }
 .red { background:#ef4444;color:#fff; }
+
+.billing-page input,
+.billing-page select {
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .billing-actions {
+    flex-direction: column;
+  }
+
+  .total-box {
+    width: 100%;
+  }
+}

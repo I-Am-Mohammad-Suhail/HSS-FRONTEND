@@ -48,7 +48,7 @@ export default function Billing() {
       </div>
 
       {/* ================= SUMMARY ================= */}
-      <div className="card summary">
+      <div className="billing-card summary">
         <h3>Billing Summary</h3>
 
         <div className="summary-grid">

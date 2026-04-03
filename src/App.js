@@ -6,9 +6,12 @@ import ProtectedRoute from "./auth/ProtectedRoute";
 import AdminLayout from "./pages/AdminLayout";
 import Dashboard from "./pages/admin/Dashboard";
 import AddPatient from "./pages/admin/Patient/AddPatient";
-import PatientVisit from "./pages/admin/Patient/PatientVisit";
+import PatientVisit from "./pages/admin/patientvisit/PatientVisit";
 import EMR from "./pages/admin/EMR/EMR";
 import Billing from "./pages/admin/biling/billing";
+import NurseTriage from "./pages/admin/Triage/NurseTriage";
+import "./styles/admin.css";
+import "./styles/common.css";
 
 export default function App() {
   return (
@@ -56,6 +59,13 @@ export default function App() {
           />
 
         </Route>
+        {/* nurse triage*/}
+  <Route path="/admin" element={<AdminLayout />}>
+
+    <Route path="triage" element={<NurseTriage />} />
+
+  </Route>
+
 
         {/* fallback */}
         <Route path="*" element={<Navigate to="/" />} />

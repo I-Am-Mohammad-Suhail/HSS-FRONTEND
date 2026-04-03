@@ -1,395 +1,90 @@
-// import { useState, useEffect } from "react";
-// import "./AddPatient.css";
-
-// const countryCityMap = {
-//   India: ["Delhi", "Mumbai", "Bangalore", "Chennai","Hydrabad","Pune","Indore"],
-//   UAE: ["Dubai", "Abu Dhabi", "Sharjah","Jeddah"],
-//   USA: ["New York", "Chicago","Wasington","London"],
-// };
-
-// const countryCodes = [
-//   { code: "+91", name: "India" },
-//   { code: "+971", name: "UAE" },
-//   { code: "+1", name: "USA" },
-//   { code: "+44", name: "UK" },
-//   { code: "+61", name: "Australia" },
-// ];
-
-// export default function AddPatient() {
-//   const [dob, setDob] = useState("");
-//   const [age, setAge] = useState("");
-//   const [country, setCountry] = useState("");
-//   const [cityList, setCityList] = useState([]);
-//   const [photo, setPhoto] = useState(null);
-
-//   const [countryCode, setCountryCode] = useState("+91");
-//   const [emgCountryCode, setEmgCountryCode] = useState("+91");
-
-//   const [patientIdNumber, setPatientIdNumber] = useState("");
-//   const [emergencyIdNumber, setEmergencyIdNumber] = useState("");
-
-  
-//   const [patientIdExpiry, setPatientIdExpiry] = useState("");
-//   const [emergencyIdExpiry, setEmergencyIdExpiry] = useState("");
-
-
-//   useEffect(() => {
-//     if (!dob) return;
-//     const birth = new Date(dob);
-//     const today = new Date();
-//     let a = today.getFullYear() - birth.getFullYear();
-//     const m = today.getMonth() - birth.getMonth();
-//     if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) a--;
-//     setAge(a);
-//   }, [dob]);
-
-//   const handleCountryChange = (value) => {
-//     setCountry(value);
-//     setCityList(countryCityMap[value] || []);
-//   };
-
-//   // temporary scan simulation
-//   const handleScan = (type) => {
-//     const fakeId = Math.floor(100000000000 + Math.random() * 900000000000);
-//     if (type === "patient") setPatientIdNumber(fakeId);
-//     if (type === "emergency") setEmergencyIdNumber(fakeId);
-//   };
-
-//   return (
-    
-//       <div className="patient-page">
-
-//         {/* HEADER */}
-//         <div className="patient-header">
-//           <div>
-//             <h2>Patient Registration</h2>
-//           </div>
-
-//           {/* PHOTO */}
-//           <div className="photo-box">
-//             {photo ? (
-//               <img src={photo} alt="patient" />
-//             ) : (
-//               <span>Upload Photo</span>
-//             )}
-
-//             <input
-//               type="file"
-//               accept="image/*"
-//               capture="environment"
-//               onChange={(e) =>
-//                 setPhoto(URL.createObjectURL(e.target.files[0]))
-//               }
-//             />
-//           </div>
-//         </div>
-
-//         <div className="patient-card">
-    
-//           <section>
-//   <h3>Patient Information</h3>
-
-//   {/* ---------- ROW 1 ---------- */}
-//   <div className="grid">
-
-//     <div>
-//       <label>Medical Record Number (MRN)</label>
-//       <input placeholder="MRN123" />
-//     </div>
-
-//     <div className="span-2">
-//       <label>Display Name</label>
-//       <input placeholder="John A Doe" />
-//     </div>
-
-//   </div>
-
-//   {/* ---------- ROW 2 ---------- */}
-//   <div className="grid">
-
-//     <div>
-//       <label>Title</label>
-//       <select>
-//         <option>Mr</option>
-//         <option>Mrs</option>
-//         <option>Miss</option>
-
-//       </select>
-//     </div>
-
-//     <div>
-//       <label>First Name</label>
-//       <input />
-//     </div>
-
-//     <div>
-//       <label>Middle Name</label>
-//       <input />
-//     </div>
-
-//     <div>
-//       <label>Last Name</label>
-//       <input />
-//     </div>
-
-//   </div>
-
-//   {/* ---------- ROW 3 ---------- */}
-//   <div className="grid">
-
-//     <div>
-//       <label>Date of Birth</label>
-//       <input
-//         type="date"
-//         value={dob}
-//         onChange={(e) => setDob(e.target.value)}
-//       />
-//     </div>
-
-//     <div>
-//       <label>Age</label>
-//       <input value={age} readOnly />
-//     </div>
-
-//     <div>
-//       <label>Gender</label>
-//       <select>
-//         <option>Male</option>
-//         <option>Female</option>
-//       </select>
-//     </div>
-
-//     <div>
-//       <label>Marital Status</label>
-//       <select>
-//         <option>Single</option>
-//         <option>Married</option>
-//       </select>
-//     </div>
-
-//   </div>
-// </section>
-
-
-//           {/* ================= CONTACT ================= */}
-//           <section>
-//             <h3>Contact Details</h3>
-//             <div className="grid">
-
-//               <div>
-//                 <label>Address</label>
-//                 <input />
-//               </div>
-
-//               <div>
-//                 <label>Country</label>
-//                 <select
-//                   value={country}
-//                   onChange={(e) => handleCountryChange(e.target.value)}
-//                 >
-//                   <option value="">Select Country</option>
-//                   {Object.keys(countryCityMap).map((c) => (
-//                     <option key={c}>{c}</option>
-//                   ))}
-//                 </select>
-//               </div>
-
-//               <div>
-//                 <label>City</label>
-//                 <select>
-//                   <option>Select City</option>
-//                   {cityList.map((city) => (
-//                     <option key={city}>{city}</option>
-//                   ))}
-//                 </select>
-//               </div>
-
-//               <div>
-//                 <label>Country Code</label>
-//                 <select
-//                   value={countryCode}
-//                   onChange={(e) => setCountryCode(e.target.value)}
-//                 >
-//                   {countryCodes.map((c) => (
-//                     <option key={c.code} value={c.code}>
-//                       {c.name} ({c.code})
-//                     </option>
-//                   ))}
-//                 </select>
-//               </div>
-
-//               <div>
-//                 <label>Mobile Number</label>
-//                 <input placeholder="Mobile number" />
-//               </div>
-
-//             </div>
-//           </section>
-
-//           {/* ================= IDENTIFICATION ================= */}
-//           <section>
-//             <h3>Patient Identification</h3>
-//             <div className="grid">
-
-//               <div>
-//                 <label>ID Type</label>
-//                 <select>
-//                   <option>Aadhaar Card</option>
-//                   <option>PAN Card</option>
-//                   <option>Voter ID</option>
-//                   <option>Passport</option>
-//                   <option>Driving License</option>
-//                 </select>
-//               </div>
-
-//               <div>
-//                 <label>ID Number</label>
-//                 <input value={patientIdNumber} />
-//               </div>
-//                 <div>
-//                 <label>ID Expiry Date</label>
-//                 <input
-//                   type="date"
-//                   value={emergencyIdExpiry}
-//                   onChange={(e) => setEmergencyIdExpiry(e.target.value)}
-//                 />
-//               </div>
-
-//               <div>
-//                 <label>Scan ID</label>
-//                 <button
-//                   type="button"
-//                   className="scan-btn"
-//                   onClick={() => handleScan("patient")}
-//                 >
-//                   Scan ID Card
-//                 </button>
-//               </div>
-
-//             </div>
-//           </section>
-
-//           {/* ================= EMERGENCY ================= */}
-//           <section>
-//             <h3>Emergency Contact</h3>
-//             <div className="grid">
-
-//               <div>
-//                 <label>First Name</label>
-//                 <input />
-//               </div>
-
-//               <div>
-//                 <label>Last Name</label>
-//                 <input />
-//               </div>
-
-//               <div>
-//                 <label>Relationship</label>
-//                 <select>
-//                   <option>Father</option>
-//                   <option>Mother</option>
-//                   <option>Spouse</option>
-//                   <option>Brother</option>
-//                   <option>Sister</option>
-//                 </select>
-//               </div>
-
-//               <div>
-//                 <label>Country Code</label>
-//                 <select
-//                   value={emgCountryCode}
-//                   onChange={(e) => setEmgCountryCode(e.target.value)}
-//                 >
-//                   {countryCodes.map((c) => (
-//                     <option key={c.code} value={c.code}>
-//                       {c.name} ({c.code})
-//                     </option>
-//                   ))}
-//                 </select>
-//               </div>
-
-//               <div>
-//                 <label>Mobile Number</label>
-//                 <input />
-//               </div>
-
-//               <div>
-//                 <label>ID Type</label>
-//                 <select>
-//                   <option>Aadhaar</option>
-//                   <option>PAN</option>
-//                   <option>Voter ID</option>
-//                 </select>
-//               </div>
-
-//               <div>
-//                 <label>ID Number</label>
-//                 <input value={emergencyIdNumber} />
-//               </div>
-//                 <div>
-//                 <label>ID Expiry Date</label>
-//                 <input
-//                   type="date"
-//                   value={emergencyIdExpiry}
-//                   onChange={(e) => setEmergencyIdExpiry(e.target.value)}
-//                 />
-//               </div>
-
-//               <div>
-//                 <label>Scan ID</label>
-//                 <button
-//                   type="button"
-//                   className="scan-btn"
-//                   onClick={() => handleScan("emergency")}
-//                 >
-//                   Scan ID
-//                 </button>
-//               </div>
-
-//             </div>
-//           </section>
-
-//           <div className="actions">
-//             <button className="submit">Register Patient</button>
-//           </div>
-
-//         </div>
-//       </div>
-    
-//   );
-// }
-  
-
 
 import { useState, useEffect, useRef } from "react";
 import "./AddPatient.css";
 
 const countryCityMap = {
-  India: ["Delhi", "Mumbai", "Pune","Banglore","Hydrabad","Indore"],
-  UAE: ["Dubai", "Abu Dhabi", "Sharjah","Jeddah","Saudi Arebia"],
-  USA: ["New York", "Chicago","London"],
+  India: ["Delhi", "Mumbai", "Bangalore", "Hyderabad", "Chennai", "Kolkata", "Pune", "Ahmedabad", "Jaipur", "Indore"],
+
+  USA: ["New York", "Los Angeles", "Chicago", "Houston", "Phoenix", "Philadelphia", "San Antonio", "San Diego", "Dallas", "San Jose"],
+
+  UK: ["London", "Manchester", "Birmingham", "Liverpool", "Leeds", "Glasgow", "Sheffield", "Edinburgh", "Bristol", "Leicester"],
+
+  Canada: ["Toronto", "Vancouver", "Montreal", "Calgary", "Ottawa", "Edmonton", "Winnipeg", "Quebec City", "Hamilton", "Kitchener"],
+
+  Australia: ["Sydney", "Melbourne", "Brisbane", "Perth", "Adelaide", "Gold Coast", "Canberra", "Newcastle", "Wollongong", "Hobart"],
+
+  Germany: ["Berlin", "Munich", "Hamburg", "Frankfurt", "Cologne", "Stuttgart", "Dusseldorf", "Leipzig", "Dortmund", "Essen"],
+
+  France: ["Paris", "Marseille", "Lyon", "Toulouse", "Nice", "Nantes", "Strasbourg", "Montpellier", "Bordeaux", "Lille"],
+
+  China: ["Beijing", "Shanghai", "Guangzhou", "Shenzhen", "Chengdu", "Chongqing", "Wuhan", "Hangzhou", "Xi'an", "Nanjing"],
+
+  Japan: ["Tokyo", "Osaka", "Yokohama", "Nagoya", "Sapporo", "Fukuoka", "Kobe", "Kyoto", "Hiroshima", "Sendai"],
+
+  Russia: ["Moscow", "Saint Petersburg", "Novosibirsk", "Yekaterinburg", "Kazan", "Nizhny Novgorod", "Chelyabinsk", "Samara", "Omsk", "Rostov"],
+
+  UAE: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman", "Ras Al Khaimah", "Fujairah", "Umm Al Quwain", "Al Ain", "Khor Fakkan", "Dibba"],
+
+  SaudiArabia: ["Riyadh", "Jeddah", "Mecca", "Medina", "Dammam", "Khobar", "Taif", "Tabuk", "Abha", "Hail"],
+
+  Pakistan: ["Karachi", "Lahore", "Islamabad", "Rawalpindi", "Faisalabad", "Multan", "Peshawar", "Quetta", "Sialkot", "Hyderabad"],
+
+  Bangladesh: ["Dhaka", "Chittagong", "Khulna", "Rajshahi", "Sylhet", "Barisal", "Rangpur", "Mymensingh", "Comilla", "Narayanganj"],
+
+  Brazil: ["Sao Paulo", "Rio de Janeiro", "Brasilia", "Salvador", "Fortaleza", "Belo Horizonte", "Manaus", "Curitiba", "Recife", "Porto Alegre"],
+
+  SouthAfrica: ["Johannesburg", "Cape Town", "Durban", "Pretoria", "Port Elizabeth", "Bloemfontein", "East London", "Polokwane", "Nelspruit", "Kimberley"],
+
+  Italy: ["Rome", "Milan", "Naples", "Turin", "Palermo", "Genoa", "Bologna", "Florence", "Venice", "Verona"],
+
+  Spain: ["Madrid", "Barcelona", "Valencia", "Seville", "Zaragoza", "Malaga", "Murcia", "Palma", "Bilbao", "Alicante"],
+
+  Mexico: ["Mexico City", "Guadalajara", "Monterrey", "Puebla", "Tijuana", "Leon", "Juarez", "Zapopan", "Merida", "Cancun"],
+
+  Indonesia: ["Jakarta", "Surabaya", "Bandung", "Medan", "Bekasi", "Tangerang", "Depok", "Semarang", "Palembang", "Makassar"]
 };
 
 const countryCodes = {
   India: "+91",
-  UAE: "+971",
   USA: "+1",
+  UK: "+44",
+  Canada: "+1",
+  Australia: "+61",
+  Germany: "+49",
+  France: "+33",
+  China: "+86",
+  Japan: "+81",
+  Russia: "+7",
+  UAE: "+971",
+  SaudiArabia: "+966",
+  Pakistan: "+92",
+  Bangladesh: "+880",
+  Brazil: "+55",
+  SouthAfrica: "+27",
+  Italy: "+39",
+  Spain: "+34",
+  Mexico: "+52",
+  Indonesia: "+62"
 };
 
-const idTypes = ["Aadhaar CARD", "PAN CARD", "Passport","VOTER ID","DRIVING LICENSE"];
-
-let mrnCounter = 1;
+const idTypes = ["Aadhaar CARD", "PAN CARD", "Passport", "VOTER ID", "DRIVING LICENSE"];
 
 export default function AddPatient() {
 
   const [mrn, setMrn] = useState("");
   const [dob, setDob] = useState("");
   const [age, setAge] = useState("");
-  const [country, setCountry] = useState("");
-  const [cities, setCities] = useState([]);
-  const [code, setCode] = useState("");
   const [showPopup, setShowPopup] = useState(false);
+
+  // CONTACT
+  const [contactCountry, setContactCountry] = useState("");
+  const [contactCities, setContactCities] = useState([]);
+  const [contactCode, setContactCode] = useState("");
+
+  // EMERGENCY
+  const [emergencyCountry, setEmergencyCountry] = useState("");
+  const [emergencyCities, setEmergencyCities] = useState([]);
+  const [emergencyCode, setEmergencyCode] = useState("");
 
   const [primaryId, setPrimaryId] = useState({ number: "", expiry: "" });
   const [secondaryId, setSecondaryId] = useState({ number: "", expiry: "" });
@@ -427,27 +122,79 @@ export default function AddPatient() {
 
     setAge(formattedAge);
   }, [dob]);
+  // CONTACT
+  const handleContactCountry = (value) => {
+    setContactCountry(value);
+    setContactCities(countryCityMap[value] || []);
+    setContactCode(countryCodes[value] || "");
+  };
 
-  // COUNTRY
-  const handleCountry = (value) => {
-    setCountry(value);
-    setCities(countryCityMap[value] || []);
-    setCode(countryCodes[value] || "");
+  // EMERGENCY
+  const handleEmergencyCountry = (value) => {
+    setEmergencyCountry(value);
+    setEmergencyCities(countryCityMap[value] || []);
+    setEmergencyCode(countryCodes[value] || "");
   };
 
   // MRN
-  const generateMRN = () => {
-    const id = "MRN" + String(mrnCounter).padStart(3, "0");
-    mrnCounter++;
-    return id;
-  };
+  const handleSubmit = async () => {
+    try {
 
-  const handleSubmit = () => {
-    const newMrn = generateMRN();
-    setMrn(newMrn);
-    setShowPopup(true);
-  };
+      const formData = new FormData();
 
+      formData.append("displayName", document.querySelector('input[placeholder="Display Name"]').value);
+      formData.append("title", document.querySelectorAll("select")[0].value);
+      formData.append("firstName", document.querySelectorAll("input")[2].value);
+      formData.append("lastName", document.querySelectorAll("input")[4].value);
+      formData.append("dob", dob);
+      formData.append("age", age || "");
+
+      formData.append("contact", JSON.stringify({
+        address: "Indore",
+        country,
+        city: cities[0],
+        code,
+        mobile: "9999999999",
+        nationality: "Indian",
+        religion: "Hindu",
+        isVip: false
+      }));
+
+      formData.append("identification", JSON.stringify([
+        {
+          type: "Aadhaar",
+          number: primaryId.number,
+          expiry: primaryId.expiry
+        }
+      ]));
+
+      formData.append("emergency", JSON.stringify({
+        name: "Father",
+        relationship: "Father"
+      }));
+
+      if (photo) {
+        formData.append("photo", photo);
+      }
+
+      // ✅ DUMMY LOGIC
+      const responseData = {
+        data: {
+          mrn: "MRN" + Math.floor(Math.random() * 10000)
+        }
+      };
+
+      console.log(responseData);
+
+      setMrn(responseData.data.mrn);
+
+      setShowPopup(true);
+
+    } catch (err) {
+      console.log(err);
+      alert("Error saving patient");
+    }
+  };
   // ✅ CAMERA FUNCTION
   const openCamera = async () => {
     try {
@@ -460,130 +207,344 @@ export default function AddPatient() {
   };
 
   return (
-    <div className="container">
+    <div className="patient-container">
 
-      <div className="header">
+      <div className="patient-header">
         <h2>Patient Registration</h2>
 
         {/* ✅ PHOTO FIX */}
         <div className="photo-box">
-          {photo ? <img src={photo} alt="preview" /> : <span>Upload</span>}
+
+          {photo ? <img src={URL.createObjectURL(photo)} alt="preview" /> : <span>Upload</span>}
           <input
             type="file"
             accept="image/*"
             onChange={(e) => {
               if (e.target.files[0]) {
-                setPhoto(URL.createObjectURL(e.target.files[0]));
+                setPhoto(e.target.files[0]);
               }
             }}
           />
         </div>
       </div>
 
-      <div className="card">
+      <div className="patient-card">
 
         <h3>Patient Info</h3>
+        <div className="patient-grid-3">
 
-        <div className="grid-3">
-          <input value={mrn} placeholder="MRN" readOnly />
-          <input className="span-2" placeholder="Display Name" />
+          <div>
+            <label>MRN</label>
+            <input value={mrn} placeholder="MRN" readOnly />
+          </div>
+
+          <div className="patient-span-2">
+            <label>Display Name</label>
+            <input placeholder="Display Name" />
+          </div>
+
+        </div>
+        <div className="patient-grid-4">
+
+          <div>
+            <label>Title</label>
+            <select defaultValue="">
+              <option value="">Select</option>
+              <option value="Mr">Mr</option>
+              <option value="Ms">Ms</option>
+            </select>
+          </div>
+
+          <div>
+            <label>First Name</label>
+            <input placeholder="First Name" />
+          </div>
+
+          <div>
+            <label>Middle Name</label>
+            <input placeholder="Middle Name" />
+          </div>
+
+          <div>
+            <label>Last Name</label>
+            <input placeholder="Last Name" />
+          </div>
+
+        </div>
+        <div className="patient-grid-4">
+
+          <div>
+            <label>Date of Birth</label>
+            <input type="date" onChange={(e) => setDob(e.target.value)} />
+          </div>
+
+          <div>
+            <label>Age</label>
+            <input value={age} placeholder="Age" readOnly />
+          </div>
+
+          <div>
+            <label>Gender</label>
+            <select defaultValue="">
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Marital Status</label>
+            <select defaultValue="">
+              <option value="">Select Marital Status</option>
+              <option value="Single">Single</option>
+              <option value="Married">Married</option>
+            </select>
+          </div>
+
+        </div>
+        <div className="patient-grid-4 align-center">
+
+          <div>
+            <label>Blood Group</label>
+            <select defaultValue="">
+              <option value="">Select Blood Group</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Nationality</label>
+            <input placeholder="Nationality" />
+          </div>
+
+          <div>
+            <label>Religion</label>
+            <select defaultValue="">
+              <option value="">Select Religion</option>
+              <option value="Hindu">Hindu</option>
+              <option value="Muslim">Muslim</option>
+              <option value="Christian">Christian</option>
+              <option value="Sikh">Sikh</option>
+            </select>
+          </div>
+          <div className="vip-field">
+            <label>VIP</label>
+            <div className="vip-row">
+              <label className="switch">
+                <input type="checkbox" />
+                <span className="slider"></span>
+              </label>
+            </div>
+          </div>
+
         </div>
 
-        <div className="grid-4">
-          <select><option>Mr</option></select>
-          <input placeholder="First Name" />
-          <input placeholder="Middle Name" />
-          <input placeholder="Last Name" />
-        </div>
-
-        <div className="grid-4">
-          <input type="date" onChange={(e)=>setDob(e.target.value)} />
-          <input value={age} placeholder="Age" readOnly />
-          <select><option>Male</option></select>
-          <select><option>Single</option></select>
-        </div>
 
         {/* CONTACT */}
         <h3>Contact</h3>
 
-        <div className="grid-1">
-          <input placeholder="Address" />
+        <div className="patient-grid-1">
+          <div>
+            <label>Address</label>
+            <input placeholder="Address" />
+          </div>
         </div>
 
-        <div className="grid-4">
-          <select onChange={(e)=>handleCountry(e.target.value)}>
-            <option>Select Country</option>
-            {Object.keys(countryCityMap).map(c=> <option key={c}>{c}</option>)}
-          </select>
+        <div className="patient-grid-4">
 
-          <select>
-            <option>Select City</option>
-            {cities.map(c=> <option key={c}>{c}</option>)}
-          </select>
+          <div>
+            <label>Country</label>
+            <select defaultValue="" onChange={(e) => handleContactCountry(e.target.value)}>
+              <option value="">Select Country</option>
+              {Object.keys(countryCityMap).map(c => (
+                <option key={c} value={c}>{c}</option>
+              ))}
+            </select>
+          </div>
 
-          <input value={code} placeholder="Code" readOnly />
-          <input placeholder="Mobile" />
+          <div>
+            <label>City</label>
+            <select defaultValue="">
+              <option value="">Select City</option>
+              {contactCities.map(c => (
+                <option key={c} value={c}>{c}</option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label>Code</label>
+            <input value={contactCode} placeholder="Code" readOnly />
+          </div>
+
+          <div>
+            <label>Mobile</label>
+            <input placeholder="Mobile" />
+          </div>
+
         </div>
 
-        <div className="grid-3 align-center">
-          <input placeholder="Nationality" />
 
-          <select>
-            <option>Select Religion</option>
-            <option>Hindu</option>
-            <option>Muslim</option>
-            <option>Christian</option>
-            <option>Sikh</option>
-          </select>
-
-          {/* <label className="vip">
-            <input type="checkbox" /> VIP
-          </label> */}
-            {/* ✅ MODERN VIP SWITCH */}
-  <div className="vip-switch">
-    <label className="switch">
-      <input type="checkbox" />
-      <span className="slider"></span>
-    </label>
-    <span>VIP</span>
-  </div>
-        </div>
 
         {/* IDENTIFICATION */}
         <h3>Identification</h3>
 
-        <div className="grid-4">
-          <select>{idTypes.map(i=><option key={i}>{i}</option>)}</select>
-          <input placeholder="ID Number" />
-          <button className="scan-btn" onClick={openCamera}>📷</button>
-          <input type="date" />
+        {/* PRIMARY ID */}
+        <div className="patient-grid-4">
+
+          <div>
+            <label>Primary ID Type</label>
+            <select defaultValue="">
+              <option value="">Select ID Type</option>
+              {idTypes.map(i => <option key={i} value={i}>{i}</option>)}
+            </select>
+          </div>
+
+          <div>
+            <label>ID Number</label>
+            <input placeholder="ID Number" />
+          </div>
+
+          <div>
+            <label>Expiry Date</label>
+            <input type="date" />
+          </div>
+
+          <div>
+            <label>Scan</label>
+            <button
+              className="scan-btn full-width"
+              onClick={openCamera}
+            >
+              📷
+            </button>
+          </div>
+
         </div>
 
-        <div className="grid-4">
-          <select>{idTypes.map(i=><option key={i}>{i}</option>)}</select>
-          <input placeholder="ID Number" />
-          <button className="scan-btn" onClick={openCamera}>📷</button>
-          <input type="date" />
+        {/* SECONDARY ID */}
+        <div className="patient-grid-4">
+
+          <div>
+            <label>Secondary ID Type</label>
+            <select defaultValue="">
+              <option value="">Select ID Type</option>
+              {idTypes.map(i => <option key={i} value={i}>{i}</option>)}
+            </select>
+          </div>
+
+          <div>
+            <label>ID Number</label>
+            <input placeholder="ID Number" />
+          </div>
+
+          <div>
+            <label>Expiry Date</label>
+            <input type="date" />
+          </div>
+          <div>
+            <label>Scan</label>
+            <button
+              className="scan-btn full-width"
+              onClick={openCamera}
+            >
+              📷
+            </button>
+          </div>
+
         </div>
 
         {/* EMERGENCY */}
         <h3>Emergency</h3>
 
-        <div className="grid-2">
-          <input placeholder="Full Name" />
-          <select>
-            <option>Select Relationship</option>
-            <option>Father</option>
-            <option>Mother</option>
-            <option>Spouse</option>
-          </select>
-        </div>
+        <div className="patient-grid-2">
 
-        <div className="grid-4">
-          <select>{idTypes.map(i=><option key={i}>{i}</option>)}</select>
-          <input placeholder="ID Number" />
-          <button className="scan-btn" onClick={openCamera}>📷</button>
-          <input type="date" />
+          <div>
+            <label>Full Name</label>
+            <input placeholder="Full Name" />
+          </div>
+
+          <div>
+            <label>Relationship</label>
+            <select defaultValue="">
+              <option value="">Select Relationship</option>
+              <option value="Father">Father</option>
+              <option value="Mother">Mother</option>
+              <option value="Spouse">Spouse</option>
+            </select>
+          </div>
+
+        </div>
+        <div className="patient-grid-4">
+
+          <div>
+            <label>Country</label>
+            <select defaultValue="" onChange={(e) => handleEmergencyCountry(e.target.value)}>
+              <option value="">Select Country</option>
+              {Object.keys(countryCityMap).map(c => (
+                <option key={c} value={c}>{c}</option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label>City</label>
+            <select defaultValue="">
+              <option value="">Select City</option>
+              {emergencyCities.map(c => (
+                <option key={c} value={c}>{c}</option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label>Code</label>
+            <input value={emergencyCode} placeholder="Code" readOnly />
+          </div>
+
+          <div>
+            <label>Mobile</label>
+            <input placeholder="Mobile" />
+          </div>
+
+        </div>
+        <div className="patient-grid-4">
+
+          <div>
+            <label>ID Type</label>
+            <select defaultValue="">
+              <option value="">Select ID Type</option>
+              {idTypes.map(i => <option key={i} value={i}>{i}</option>)}
+            </select>
+          </div>
+
+          <div>
+            <label>ID Number</label>
+            <input placeholder="ID Number" />
+          </div>
+
+          <div>
+            <label>Expiry Date</label>
+            <input type="date" />
+          </div>
+
+          <div>
+            <label>Scan</label>
+            <button
+              className="scan-btn full-width"
+              onClick={openCamera}
+            >
+              📷
+            </button>
+          </div>
+
         </div>
 
         <button className="submit" onClick={handleSubmit}>
@@ -596,7 +557,7 @@ export default function AddPatient() {
       {cameraOn && (
         <div className="camera-modal">
           <video ref={videoRef} autoPlay></video>
-          <button onClick={()=>setCameraOn(false)}>Close</button>
+          <button onClick={() => setCameraOn(false)}>Close</button>
         </div>
       )}
 
@@ -606,7 +567,7 @@ export default function AddPatient() {
             <h2>Patient Registered</h2>
             <p>MRN Generated Successfully</p>
             <h3>{mrn}</h3>
-            <button onClick={()=>setShowPopup(false)}>OK</button>
+            <button onClick={() => setShowPopup(false)}>OK</button>
           </div>
         </div>
       )}
@@ -614,3 +575,257 @@ export default function AddPatient() {
     </div>
   );
 }
+
+
+// import { useState, useEffect, useRef } from "react";
+// import "./AddPatient.css";
+
+// const countryCityMap = {
+//   India: ["Delhi", "Mumbai", "Pune","Banglore","Hydrabad","Indore"],
+//   UAE: ["Dubai", "Abu Dhabi", "Sharjah","Jeddah","Saudi Arebia"],
+//   USA: ["New York", "Chicago","London"],
+// };
+
+// const countryCodes = {
+//   India: "+91",
+//   UAE: "+971",
+//   USA: "+1",
+// };
+
+// const idTypes = ["Aadhaar CARD", "PAN CARD", "Passport","VOTER ID","DRIVING LICENSE"];
+
+// let mrnCounter = 1;
+
+// export default function AddPatient() {
+
+//   const [mrn, setMrn] = useState("");
+//   const [dob, setDob] = useState("");
+//   const [age, setAge] = useState("");
+//   const [country, setCountry] = useState("");
+//   const [cities, setCities] = useState([]);
+//   const [code, setCode] = useState("");
+//   const [showPopup, setShowPopup] = useState(false);
+
+//   const [primaryId, setPrimaryId] = useState({ number: "", expiry: "" });
+//   const [secondaryId, setSecondaryId] = useState({ number: "", expiry: "" });
+
+//   // ✅ PHOTO STATE
+//   const [photo, setPhoto] = useState(null);
+
+//   // ✅ CAMERA STATE
+//   const [cameraOn, setCameraOn] = useState(false);
+//   const videoRef = useRef(null);
+
+//   ✅ AGE CALC (FIXED)
+//   useEffect(() => {
+//     if (!dob) return;
+
+//     const birth = new Date(dob);
+//     const today = new Date();
+
+//     let years = today.getFullYear() - birth.getFullYear();
+//     let months = today.getMonth() - birth.getMonth();
+//     let days = today.getDate() - birth.getDate();
+
+//     if (days < 0) {
+//       months--;
+//       const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+//       days += prevMonth.getDate();
+//     }
+
+//     if (months < 0) {
+//       years--;
+//       months += 12;
+//     }
+
+//     const formattedAge = `${years}Y${String(months).padStart(2, "0")}M${String(days).padStart(2, "0")}D`;
+
+//     setAge(formattedAge);
+//   }, [dob]);
+
+//   // COUNTRY
+//   const handleCountry = (value) => {
+//     setCountry(value);
+//     setCities(countryCityMap[value] || []);
+//     setCode(countryCodes[value] || "");
+//   };
+
+//   // MRN
+//   const generateMRN = () => {
+//     const id = "MRN" + String(mrnCounter).padStart(3, "0");
+//     mrnCounter++;
+//     return id;
+//   };
+
+//   const handleSubmit = () => {
+//     const newMrn = generateMRN();
+//     setMrn(newMrn);
+//     setShowPopup(true);
+//   };
+
+//   // ✅ CAMERA FUNCTION
+//   const openCamera = async () => {
+//     try {
+//       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+//       videoRef.current.srcObject = stream;
+//       setCameraOn(true);
+//     } catch (err) {
+//       alert("Camera permission denied");
+//     }
+//   };
+
+//   return (
+//     <div className="container">
+
+//       <div className="header">
+//         <h2>Patient Registration</h2>
+
+//         {/* ✅ PHOTO FIX */}
+//         <div className="photo-box">
+//           {photo ? <img src={photo} alt="preview" /> : <span>Upload</span>}
+//           <input
+//             type="file"
+//             accept="image/*"
+//             onChange={(e) => {
+//               if (e.target.files[0]) {
+//                 setPhoto(URL.createObjectURL(e.target.files[0]));
+//               }
+//             }}
+//           />
+//         </div>
+//       </div>
+
+//       <div className="card">
+
+//         <h3>Patient Info</h3>
+
+//         <div className="grid-3">
+//           <input value={mrn} placeholder="MRN" readOnly />
+//           <input className="span-2" placeholder="Display Name" />
+//         </div>
+
+//         <div className="grid-4">
+//           <select><option>Mr</option></select>
+//           <input placeholder="First Name" />
+//           <input placeholder="Middle Name" />
+//           <input placeholder="Last Name" />
+//         </div>
+
+//         <div className="grid-4">
+//           <input type="date" onChange={(e)=>setDob(e.target.value)} />
+//           <input value={age} placeholder="Age" readOnly />
+//           <select><option>Male</option></select>
+//           <select><option>Single</option></select>
+//         </div>
+
+//         {/* CONTACT */}
+//         <h3>Contact</h3>
+
+//         <div className="grid-1">
+//           <input placeholder="Address" />
+//         </div>
+
+//         <div className="grid-4">
+//           <select onChange={(e)=>handleCountry(e.target.value)}>
+//             <option>Select Country</option>
+//             {Object.keys(countryCityMap).map(c=> <option key={c}>{c}</option>)}
+//           </select>
+
+//           <select>
+//             <option>Select City</option>
+//             {cities.map(c=> <option key={c}>{c}</option>)}
+//           </select>
+
+//           <input value={code} placeholder="Code" readOnly />
+//           <input placeholder="Mobile" />
+//         </div>
+
+//         <div className="grid-3 align-center">
+//           <input placeholder="Nationality" />
+
+//           <select>
+//             <option>Select Religion</option>
+//             <option>Hindu</option>
+//             <option>Muslim</option>
+//             <option>Christian</option>
+//             <option>Sikh</option>
+//           </select>
+
+//           {/* <label className="vip">
+//             <input type="checkbox" /> VIP
+//           </label> */}
+//             {/* ✅ MODERN VIP SWITCH */}
+//   <div className="vip-switch">
+//     <label className="switch">
+//       <input type="checkbox" />
+//       <span className="slider"></span>
+//     </label>
+//     <span>VIP</span>
+//   </div>
+//         </div>
+
+//         {/* IDENTIFICATION */}
+//         <h3>Identification</h3>
+
+//         <div className="grid-4">
+//           <select>{idTypes.map(i=><option key={i}>{i}</option>)}</select>
+//           <input placeholder="ID Number" />
+//           <button className="scan-btn" onClick={openCamera}>📷</button>
+//           <input type="date" />
+//         </div>
+
+//         <div className="grid-4">
+//           <select>{idTypes.map(i=><option key={i}>{i}</option>)}</select>
+//           <input placeholder="ID Number" />
+//           <button className="scan-btn" onClick={openCamera}>📷</button>
+//           <input type="date" />
+//         </div>
+
+//         {/* EMERGENCY */}
+//         <h3>Emergency</h3>
+
+//         <div className="grid-2">
+//           <input placeholder="Full Name" />
+//           <select>
+//             <option>Select Relationship</option>
+//             <option>Father</option>
+//             <option>Mother</option>
+//             <option>Spouse</option>
+//           </select>
+//         </div>
+
+//         <div className="grid-4">
+//           <select>{idTypes.map(i=><option key={i}>{i}</option>)}</select>
+//           <input placeholder="ID Number" />
+//           <button className="scan-btn" onClick={openCamera}>📷</button>
+//           <input type="date" />
+//         </div>
+
+//         <button className="submit" onClick={handleSubmit}>
+//           Register Patient
+//         </button>
+
+//       </div>
+
+//       {/* ✅ CAMERA MODAL */}
+//       {cameraOn && (
+//         <div className="camera-modal">
+//           <video ref={videoRef} autoPlay></video>
+//           <button onClick={()=>setCameraOn(false)}>Close</button>
+//         </div>
+//       )}
+
+//       {showPopup && (
+//         <div className="popup">
+//           <div className="popup-box">
+//             <h2>Patient Registered</h2>
+//             <p>MRN Generated Successfully</p>
+//             <h3>{mrn}</h3>
+//             <button onClick={()=>setShowPopup(false)}>OK</button>
+//           </div>
+//         </div>
+//       )}
+
+//     </div>
+//   );
+// }
