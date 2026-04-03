@@ -63,23 +63,30 @@
 @media (max-width: 768px) {
 
   .sidebar {
+    width: 70px;   /* 🔥 small sidebar */
+    min-height: 100vh;
     position: fixed;
-    left: -240px;   /* 🔥 hidden by default */
-    width: 240px;
-    height: 100%;
-  }
-
-  .sidebar.active {
-    left: 0;  /* 🔥 open sidebar */
+    left: 0;
+    top: 0;
   }
 
   .admin-content {
-    margin-left: 0;
-    width: 100%;
-    padding: 16px;
+    margin-left: 70px;
+    width: calc(100% - 70px);
+    padding: 12px;
+  }
+
+  /* optional: hide text, only icons */
+  .menu li a {
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .logo {
+    font-size: 14px;
+    text-align: center;
   }
 }
-
 /* ========================= */
 /* 📲 TABLET (769px - 1024px) */
 /* ========================= */
