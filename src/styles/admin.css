@@ -2,7 +2,6 @@
 .admin-layout {
   display: flex;
   min-height: 100vh;
-
 }
 
 /* ===== SIDEBAR ===== */
@@ -17,6 +16,7 @@
   left: 0;
 
   z-index: 1000;
+  transition: 0.3s;
 }
 
 /* LOGO */
@@ -54,19 +54,54 @@
   margin-left: 240px;
   width: calc(100% - 240px);
   padding: 24px;
+  transition: 0.3s;
 }
 
-/* ===== MOBILE ===== */
+/* ========================= */
+/* 📱 MOBILE (<=768px) */
+/* ========================= */
 @media (max-width: 768px) {
 
   .sidebar {
-    position: relative;
-    width: 100%;
-    height: auto;
+    position: fixed;
+    left: -240px;   /* 🔥 hidden by default */
+    width: 240px;
+    height: 100%;
+  }
+
+  .sidebar.active {
+    left: 0;  /* 🔥 open sidebar */
   }
 
   .admin-content {
     margin-left: 0;
     width: 100%;
+    padding: 16px;
+  }
+}
+
+/* ========================= */
+/* 📲 TABLET (769px - 1024px) */
+/* ========================= */
+@media (max-width: 1024px) {
+
+  .sidebar {
+    width: 200px;
+  }
+
+  .admin-content {
+    margin-left: 200px;
+    width: calc(100% - 200px);
+    padding: 20px;
+  }
+}
+
+/* ========================= */
+/* 💻 LARGE SCREEN (>1200px) */
+/* ========================= */
+@media (min-width: 1200px) {
+
+  .admin-content {
+    padding: 32px;
   }
 }
