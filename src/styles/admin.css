@@ -57,17 +57,11 @@
   transition: 0.3s;
 }
 
-/* ========================= */
-/* 📱 MOBILE (<=768px) */
-/* ========================= */
+/* 📱 MOBILE */
 @media (max-width: 768px) {
 
   .sidebar {
-    width: 70px;   /* 🔥 small sidebar */
-    min-height: 100vh;
-    position: fixed;
-    left: 0;
-    top: 0;
+    width: 70px;   /* mini sidebar */
   }
 
   .admin-content {
@@ -76,39 +70,26 @@
     padding: 12px;
   }
 
-  /* optional: hide text, only icons */
   .menu li a {
-    font-size: 12px;
+    font-size: 11px;
     text-align: center;
   }
 
   .logo {
-    font-size: 14px;
+    font-size: 13px;
     text-align: center;
   }
 }
-/* ========================= */
-/* 📲 TABLET (769px - 1024px) */
-/* ========================= */
+
+/* 📲 TABLET */
 @media (max-width: 1024px) {
 
   .sidebar {
-    width: 200px;
+    width: 180px;
   }
 
   .admin-content {
-    margin-left: 200px;
-    width: calc(100% - 200px);
-    padding: 20px;
-  }
-}
-
-/* ========================= */
-/* 💻 LARGE SCREEN (>1200px) */
-/* ========================= */
-@media (min-width: 1200px) {
-
-  .admin-content {
-    padding: 32px;
+    margin-left: 180px;
+    width: calc(100% - 180px);
   }
 }

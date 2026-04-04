@@ -1,7 +1,5 @@
-
-
 /* ===== CONTENT AREA ===== */
-patient-container {
+.patient-container {
   width: 100%;
 }
 
@@ -11,12 +9,15 @@ patient-container {
   align-items: center;
   width: 100%;
   justify-content: space-between;
-    margin-bottom: 16px;
+  margin-bottom: 16px;
+
+
 }
 
 /* 🔥 MAIN FIX */
 .patient-header h2 {
-  flex: 1;   /* ye pura space le lega */
+  flex: 1;
+  /* ye pura space le lega */
 }
 
 
@@ -24,7 +25,8 @@ patient-container {
 .photo-box {
   width: 100px;
   height: 120px;
-  border: 1px solid #d1d5db; /* dashed hata */
+  border: 1px solid #d1d5db;
+  /* dashed hata */
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -33,7 +35,8 @@ patient-container {
   position: relative;
   cursor: pointer;
   overflow: hidden;
-  margin-left: auto;
+  margin-left: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .photo-box:hover {
@@ -57,12 +60,22 @@ patient-container {
   opacity: 0;
 }
 
+.photo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 120px;
+  /* 🔥 important */
+}
+
 /* ===== CARD ===== */
 .patient-card {
   background: #fff;
   padding: 24px;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  max-width: 1200px;
+  margin: auto;
 }
 
 /* ===== SECTION ===== */
@@ -83,10 +96,22 @@ h3 {
   margin-bottom: 14px;
 }
 
-.patient-grid-1 { grid-template-columns: 1fr; }
-.patient-grid-2 { grid-template-columns: repeat(2,1fr); }
-.patient-grid-3 { grid-template-columns: repeat(3,1fr); }
-.patient-grid-4 { grid-template-columns: repeat(4,1fr); }
+.patient-grid-1 {
+  grid-template-columns: 1fr;
+}
+
+.patient-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.patient-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.patient-grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
 /* ===== INPUT ===== */
 
 .patient-container input,
@@ -106,8 +131,16 @@ h3 {
   border-color: #2563eb;
   background: #fff;
 }
+
 .patient-span-2 {
   grid-column: span 2;
+}
+
+.patient-grid-4>div,
+.patient-grid-3>div,
+.patient-grid-2>div {
+  display: flex;
+  flex-direction: column;
 }
 
 /* ===== BUTTON ===== */
@@ -119,6 +152,7 @@ h3 {
   color: white;
   cursor: pointer;
 }
+
 .full-width {
   width: 100%;
 }
@@ -171,11 +205,11 @@ h3 {
   transition: 0.3s;
 }
 
-.switch input:checked + .slider {
+.switch input:checked+.slider {
   background: #2563eb;
 }
 
-.switch input:checked + .slider:before {
+.switch input:checked+.slider:before {
   transform: translateX(18px);
 }
 
@@ -183,7 +217,7 @@ h3 {
 .popup {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -200,73 +234,58 @@ h3 {
 /* ===== MOBILE RESPONSIVE ===== */
 @media (max-width: 768px) {
 
-  /* sidebar top */
-  .sidebar {
-    position: relative;
-    width: 100%;
-    height: auto;
-  }
-
-  .admin-content {
-    margin-left: 0;
-    width: 100%;
-  }
-
-  /* header stack */
   .patient-header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
   }
 
-  .patient-header .photo-box {
+  .photo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .photo-box {
     margin-left: 0;
+    width: 80px;
+    height: 100px;
   }
 
-  /* grid stack */
-  .patient-grid-4,
-.patient-grid-3,
-.patient-grid-2 {
+  .patient-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .patient-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .patient-grid-2 {
     grid-template-columns: 1fr;
   }
+
 }
 
 @media (max-width: 1024px) {
-.patient-grid-4 {
-  grid-template-columns: repeat(2, 1fr);
-}
 
-.patient-grid-3 {
-  grid-template-columns: repeat(2, 1fr);
-}
+  .patient-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-.patient-grid-2 {
-  grid-template-columns: 1fr;
-}
+  .patient-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .patient-grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .photo-box {
+    width: 90px;
+    height: 110px;
+  }
+
   .admin-content {
     padding: 16px;
   }
 
-  .photo-box {
-    width: 70px;
-    height: 70px;
-  }
-  .vip-field {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.vip-row {
-  display: flex;
-  align-items: center;
-  height: 38px; /* same as input */
-  gap: 10px;
-}
-
-}
-.vip-field {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
