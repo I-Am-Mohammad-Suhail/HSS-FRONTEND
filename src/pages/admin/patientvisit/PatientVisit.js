@@ -463,6 +463,17 @@ export default function PatientVisit() {
     }
   };
 
+    // ✅ CAMERA FUNCTION
+  const openCamera = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      videoRef.current.srcObject = stream;
+      setCameraOn(true);
+    } catch (err) {
+      alert("Camera permission denied");
+    }
+  };
+
   return (
     <div className="visit-page">
 
@@ -567,6 +578,27 @@ export default function PatientVisit() {
             />
           </div>
 
+           <div>
+            <label>Card Number</label>
+            <input placeholder="Card number" />
+          </div>
+
+
+          <div>
+            <label>Referral Source</label>
+            <input placeholder="Referral source" />
+          </div>
+
+           <div>
+            <label>Scan</label>
+            <button
+              className="scan-btn full-width"
+              onClick={openCamera}
+            >
+              📷
+            </button>
+          </div>
+
         </div>
       </div>
 
@@ -574,11 +606,6 @@ export default function PatientVisit() {
       <div className="card">
         <h3>Billing &amp; Administrative</h3>
         <div className="billing-left">
-
-          <div>
-            <label>Plan Name</label>
-            <input placeholder="Enter plan name" />
-          </div>
 
           <div>
             <label>Patient Type</label>
@@ -590,16 +617,12 @@ export default function PatientVisit() {
           </div>
 
           <div>
-            <label>Insurance Expiry</label>
-            <input type="date" />
-          </div>
-
-          <div>
             <label>Insurance Provider</label>
             <select>
               {INSURANCE_PROVIDERS.map((p) => <option key={p}>{p}</option>)}
             </select>
           </div>
+
 
           <div>
             <label>Network</label>
@@ -609,14 +632,28 @@ export default function PatientVisit() {
           </div>
 
           <div>
+            <label>Plan Name</label>
+            <input placeholder="Enter plan name" />
+          </div>
+
+          <div>
             <label>Member ID</label>
             <input placeholder="Member ID" />
           </div>
+
 
           <div>
             <label>Card Number</label>
             <input placeholder="Card number" />
           </div>
+
+
+          <div>
+            <label>Insurance Expiry</label>
+            <input type="date" />
+          </div>
+
+
 
           <div>
             <label>Referral Source</label>
