@@ -609,7 +609,7 @@ export default function AddPatient() {
           <div>
             <label>Full Name <span className="required">*</span></label>
             <input
-              placeholder="Last Name"
+              placeholder="Full Name"
               onInput={(e) => {
                 e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, "");
               }}
