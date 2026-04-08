@@ -66,6 +66,14 @@ const countryCodes = {
   Mexico: "+52",
   Indonesia: "+62"
 };
+const phoneLengthByCountry = {
+  India: 10,
+  USA: 10,
+  UK: 10,
+  UAE: 9,
+  Pakistan: 10,
+  Bangladesh: 10,
+};
 
 const idTypes = ["Aadhaar CARD", "PAN CARD", "Passport", "VOTER ID", "DRIVING LICENSE"];
 
@@ -135,10 +143,80 @@ export default function AddPatient() {
     setEmergencyCities(countryCityMap[value] || []);
     setEmergencyCode(countryCodes[value] || "");
   };
+  const validateForm = () => {
+    if (!photo) return "Photo is required";
+
+    if (!document.querySelectorAll("select")[0].value) return "Title is required";
+
+    if (!document.querySelector('input[placeholder="First Name"]').value)
+      return "First Name is required";
+
+    if (!document.querySelector('input[placeholder="Last Name"]').value)
+      return "Last Name is required";
+
+    if (!dob) return "Date of Birth is required";
+
+    const birthDate = new Date(dob);
+    const today = new Date();
+
+    if (birthDate > today) {
+      return "Future DOB not allowed";
+    }
+
+    if (birthDate.getFullYear() < 1900) {
+      return "DOB cannot be before 1900";
+    }
+
+    if (!document.querySelectorAll("select")[1].value)
+      return "Gender is required";
+
+    if (!document.querySelectorAll("select")[2].value)
+      return "Marital Status is required";
+
+    if (!contactCountry) return "Country is required";
+
+    if (!document.querySelector('input[placeholder="Mobile"]').value)
+      return "Mobile Number is required";
+
+    const mobile = document.querySelectorAll('input[placeholder="Mobile"]')[0].value;
+
+    const requiredLength = phoneLengthByCountry[contactCountry] || 10;
+
+    if (mobile.length !== requiredLength) {
+      return `${contactCountry} mobile must be ${requiredLength} digits`;
+    }
+
+    if (!document.querySelector('input[placeholder="Nationality"]').value)
+      return "Nationality is required";
+
+    if (!document.querySelectorAll("select")[3].value)
+      return "Blood Group is required";
+
+    if (!document.querySelectorAll("select")[5].value)
+      return "Primary ID Type is required";
+
+    if (!document.querySelectorAll('input[placeholder="Full Name"]')[0].value)
+      return "Emergency Full Name is required";
+
+    if (!document.querySelectorAll("input[placeholder='Mobile']")[1]?.value)
+      return "Emergency Mobile is required";
+
+    if (!document.querySelectorAll("select")[8]?.value)
+      return "Relationship is required";
+
+    return null;
+  };
 
   // MRN
   const handleSubmit = async () => {
     try {
+
+      const error = validateForm();
+
+      if (error) {
+        alert(error);
+        return;
+      }
 
       const formData = new FormData();
 
@@ -149,15 +227,25 @@ export default function AddPatient() {
       formData.append("dob", dob);
       formData.append("age", age || "");
 
+      // formData.append("contact", JSON.stringify({
+      //   address: "Indore",
+      //   country,
+      //   city: cities[0],
+      //   code,
+      //   mobile: "9999999999",
+      //   nationality: "Indian",
+      //   religion: "Hindu",
+      //   isVip: false
+      // }));
       formData.append("contact", JSON.stringify({
-        address: "Indore",
-        country,
-        city: cities[0],
-        code,
-        mobile: "9999999999",
-        nationality: "Indian",
-        religion: "Hindu",
-        isVip: false
+        address: document.querySelector('input[placeholder="Address"]').value,
+        country: contactCountry,
+        city: document.querySelectorAll("select")[6]?.value || "",
+        code: contactCode,
+        mobile: document.querySelector('input[placeholder="Mobile"]').value,
+        nationality: document.querySelector('input[placeholder="Nationality"]').value,
+        religion: document.querySelectorAll("select")[4]?.value || "",
+        isVip: document.querySelector('input[type="checkbox"]').checked
       }));
 
       formData.append("identification", JSON.stringify([
@@ -213,7 +301,11 @@ export default function AddPatient() {
         <h2>Patient Registration</h2>
 
         {/* ✅ PHOTO FIX */}
+
+
+        {/* 
         <div className="photo-box">
+          <span className="photo-required">*</span>
 
           {photo ? <img src={URL.createObjectURL(photo)} alt="preview" /> : <span>Upload</span>}
           <input
@@ -225,7 +317,29 @@ export default function AddPatient() {
               }
             }}
           />
+        </div> */}
+        <div className="photo-wrapper">
+          <span className="photo-required">*</span>
+
+          <div className="photo-box">
+            {photo ? (
+              <img src={URL.createObjectURL(photo)} alt="preview" />
+            ) : (
+              <span>Upload</span>
+            )}
+
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => {
+                if (e.target.files[0]) {
+                  setPhoto(e.target.files[0]);
+                }
+              }}
+            />
+          </div>
         </div>
+
       </div>
 
       <div className="patient-card">
@@ -247,7 +361,7 @@ export default function AddPatient() {
         <div className="patient-grid-4">
 
           <div>
-            <label>Title</label>
+            <label>Title <span className="required">*</span></label>
             <select defaultValue="">
               <option value="">Select</option>
               <option value="Mr">Mr</option>
@@ -256,8 +370,13 @@ export default function AddPatient() {
           </div>
 
           <div>
-            <label>First Name</label>
-            <input placeholder="First Name" />
+            <label>First Name <span className="required">*</span></label>
+            <input
+              placeholder="First Name"
+              onInput={(e) => {
+                e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, "");
+              }}
+            />
           </div>
 
           <div>
@@ -266,16 +385,26 @@ export default function AddPatient() {
           </div>
 
           <div>
-            <label>Last Name</label>
-            <input placeholder="Last Name" />
+            <label>Last Name <span className="required">*</span></label>
+            <input
+              placeholder="Last Name"
+              onInput={(e) => {
+                e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, "");
+              }}
+            />
           </div>
 
         </div>
         <div className="patient-grid-4">
 
           <div>
-            <label>Date of Birth</label>
-            <input type="date" onChange={(e) => setDob(e.target.value)} />
+            <label>Date of Birth <span className="required">*</span></label>
+            <input
+              type="date"
+              min="1900-01-01"
+              max={new Date().toISOString().split("T")[0]}
+              onChange={(e) => setDob(e.target.value)}
+            />
           </div>
 
           <div>
@@ -284,7 +413,7 @@ export default function AddPatient() {
           </div>
 
           <div>
-            <label>Gender</label>
+            <label>Gender <span className="required">*</span></label>
             <select defaultValue="">
               <option value="">Select Gender</option>
               <option value="Male">Male</option>
@@ -293,7 +422,7 @@ export default function AddPatient() {
           </div>
 
           <div>
-            <label>Marital Status</label>
+            <label>Marital Status <span className="required">*</span></label>
             <select defaultValue="">
               <option value="">Select Marital Status</option>
               <option value="Single">Single</option>
@@ -305,7 +434,7 @@ export default function AddPatient() {
         <div className="patient-grid-4 align-center">
 
           <div>
-            <label>Blood Group</label>
+            <label>Blood Group <span className="required">*</span></label>
             <select defaultValue="">
               <option value="">Select Blood Group</option>
               <option value="A+">A+</option>
@@ -320,8 +449,13 @@ export default function AddPatient() {
           </div>
 
           <div>
-            <label>Nationality</label>
-            <input placeholder="Nationality" />
+            <label>Nationality <span className="required">*</span></label>
+            <input
+              placeholder="Nationality"
+              onInput={(e) => {
+                e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, "");
+              }}
+            />
           </div>
 
           <div>
@@ -360,7 +494,7 @@ export default function AddPatient() {
         <div className="patient-grid-4">
 
           <div>
-            <label>Country</label>
+            <label>Country <span className="required">*</span></label>
             <select defaultValue="" onChange={(e) => handleContactCountry(e.target.value)}>
               <option value="">Select Country</option>
               {Object.keys(countryCityMap).map(c => (
@@ -385,8 +519,14 @@ export default function AddPatient() {
           </div>
 
           <div>
-            <label>Mobile</label>
-            <input placeholder="Mobile" />
+            <label>Mobile <span className="required">*</span></label>
+            <input
+              placeholder="Mobile"
+              maxLength={phoneLengthByCountry[contactCountry] || 10}
+              onInput={(e) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+              }}
+            />
           </div>
 
         </div>
@@ -400,7 +540,7 @@ export default function AddPatient() {
         <div className="patient-grid-4">
 
           <div>
-            <label>Primary ID Type</label>
+            <label>Primary ID Type <span className="required">*</span></label>
             <select defaultValue="">
               <option value="">Select ID Type</option>
               {idTypes.map(i => <option key={i} value={i}>{i}</option>)}
@@ -408,7 +548,7 @@ export default function AddPatient() {
           </div>
 
           <div>
-            <label>ID Number</label>
+            <label> Primery ID Number</label>
             <input placeholder="ID Number" />
           </div>
 
@@ -441,7 +581,7 @@ export default function AddPatient() {
           </div>
 
           <div>
-            <label>ID Number</label>
+            <label>Secondry ID Number</label>
             <input placeholder="ID Number" />
           </div>
 
@@ -467,12 +607,17 @@ export default function AddPatient() {
         <div className="patient-grid-2">
 
           <div>
-            <label>Full Name</label>
-            <input placeholder="Full Name" />
+            <label>Full Name <span className="required">*</span></label>
+            <input
+              placeholder="Last Name"
+              onInput={(e) => {
+                e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, "");
+              }}
+            />
           </div>
 
           <div>
-            <label>Relationship</label>
+            <label>Relationship <span className="required">*</span> <span className="required">*</span></label>
             <select defaultValue="">
               <option value="">Select Relationship</option>
               <option value="Father">Father</option>
@@ -510,8 +655,14 @@ export default function AddPatient() {
           </div>
 
           <div>
-            <label>Mobile</label>
-            <input placeholder="Mobile" />
+            <label>Mobile <span className="required">*</span></label>
+            <input
+              placeholder="Mobile"
+              maxLength={phoneLengthByCountry[contactCountry] || 10}
+              onInput={(e) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+              }}
+            />
           </div>
 
         </div>
